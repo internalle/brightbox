@@ -6,7 +6,7 @@
         <div class="col-xs-3 pull-left">
             @if(count($model->images))
                 @foreach($model->images as $image)
-                    <a href="{{$model->name ?  asset('storage/' . $image->name) : "#"}}" /><img height="150" src="{{$model->name ?  asset('storage/' . $model->name) : ""}}"></a>
+                    <a href="{{$image->name ?  asset('storage/' . $image->name) : "#"}}" /><img height="150" src="{{$image->name ?  asset('storage/' . $image->name) : ""}}"></a>
 
                 @endforeach
 
