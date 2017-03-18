@@ -47,11 +47,20 @@ class User extends Authenticatable
 
     public function isAdmin(){
 
-        return $this->role->name === "administrator" ? true : false;
+        if($this->role){
+            return $this->role->name === "administrator" ? true : false;
+        }
+
+        return false;
+
     }
 
     public function isManager(){
-        return ($this->role->name === "manager")? true : false;
+        if($this->role) {
+            return ($this->role->name === "manager") ? true : false;
+        }
+
+        return false;
     }
 
     public function isAdminOrManager(){
@@ -60,7 +69,10 @@ class User extends Authenticatable
     }
 
     public function isApplicant(){
+        if($this->role) {
+            return $this->role->name === "applicant" ? true : false;
+        }
 
-        return $this->role->name === "applicant" ? true : false;
+        return false;
     }
 }

@@ -19,13 +19,31 @@ class UserPolicy
         //
     }
 
-    public function edit($user , User $employee){
+    public function edit($user, User $employee)
+    {
 
-        if($user->isAdmin() && ($user->company_id == $employee->company_id)  && ($employee->id != $user->id) ){
+        if ($user->isAdmin() && $this->sameCompany($user, $employee) && ($employee->id != $user->id)) {
             return true;
         }
 
         return false;
 
+    }
+
+    public function show($user, User $employee)
+    {
+
+        if ($user->isAdminOrManager() && $this->sameCompany($user, $employee)) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    private function sameCompany($user, $emp)
+    {
+
+        return ($emp->company_id == $user->company_id) ? true : false;
     }
 }

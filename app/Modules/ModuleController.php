@@ -65,6 +65,14 @@ abstract class ModuleController extends Controller
         return view("panel.{$this->viewPath}.index")->with(compact('models'));
     }
 
+    public function show($id)
+    {
+        $model = $this->repository->model()->find($id);
+        $this->authorize('show', $model);
+        return view("panel.{$this->viewPath}.show")->with(compact('model'));
+    }
+
+
     public function create()
     {
         return view("panel.{$this->viewPath}.create");

@@ -19,13 +19,28 @@ class ProductPolicy
         //
     }
 
-    public function edit($user , Product $product){
+    public function edit($user, Product $product)
+    {
 
-        if(($user->company_id == $product->company_id) && $user->isAdminOrManager()){
+        if ($this->sameCompany($user, $product) && $user->isAdminOrManager()) {
             return true;
         }
 
         return false;
+    }
 
+    public function show($user, Product $product)
+    {
+
+        if (!$user->isApplicant() && $this->sameCompany($user, $product)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function sameCompany($user, $product)
+    {
+        return ($product->company_id == $user->company_id) ? true : false;
     }
 }

@@ -31,7 +31,7 @@
                     <td>
                       <a href="{{$user->avatar ?  asset('storage/' . $user->avatar) : "#"}}" /><img height="70" src="{{$user->avatar ?  asset('storage/' . $user->avatar) : "https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png"}}"></a>
                     </td>
-                    <td>{{$user->name}} </td>
+                    <td>@if (Auth::user()->can('ManagerOrAdmin'))<a href="{{route('users.show',$user->id)}}" ><strong>{{$user->name}}</strong></a> @endif</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->role? $user->role->name : 'no role yet'}}</td>
                     @can('Admin')

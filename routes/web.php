@@ -34,11 +34,6 @@ Route::group(['prefix' => 'panel','middleware' => 'auth','namespace' => 'BB\Modu
 
     });
 
-
-
-
-
-
 });
 
 //USR CONTROLLER

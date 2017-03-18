@@ -25,7 +25,7 @@
              @foreach($models as $product)
                  <tr>
                      <td>{{$product->id}}</td>
-                     <td>{{$product->name}}</td>
+                     <td>@if (Auth::user()->cannot('Applicant'))<a href="{{route('products.show',$product->id)}}" ><strong>{{$product->name}}</strong></a> @endif</td>
                      <td>{{$product->stock}}</td>
                      <td>
                      @if(count($product->images))
