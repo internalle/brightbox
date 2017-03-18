@@ -1,25 +1,10 @@
 @extends('layouts.panel')
 
 @section('content')
-    <div class="row">
-        <div class="col-xs-9">
-            @if(count($errors) > 0)
-                <div class="alert alert-danger col-xs-10 " >
-
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>
-                                {{$error}}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-         </div>
-    </div>
+    @include('panel.partials.errors')
     <div class="row">
     <div class="col-xs-9">
-    <h1> Company Profile </h1>
+    <h1> {{$model->name}} </h1>
 
     {!! Form::model($model,['method' => 'PATCH', 'route' => ['products.update' , $model->id ]]) !!}
         <div class="form-group">
@@ -29,7 +14,7 @@
 
         <div class="form-group">
             {!! Form::label('details',"Details:") !!}
-            {!! Form::text('details',$model->details,['class' => "form-control"]) !!}
+            {!! Form::textarea('details',$model->details,['class' => "form-control"]) !!}
         </div>
 
         <div class="form-group">
@@ -43,7 +28,7 @@
         </div>
 
     {!! Form::close() !!}
-
+        <a href="{{ URL::previous() }}" class="btn btn-default">Back</a>
     </div>
     </div>
     <hr>

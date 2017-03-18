@@ -1,6 +1,7 @@
 @extends('layouts.panel')
 
 @section('content')
+    @include('panel.partials.errors')
 
     <h1>Create  </h1>
 
@@ -37,17 +38,6 @@
         </div>
 
     {!! Form::close() !!}
+    <a href="{{ URL::previous() }}" class="btn btn-default">Back</a>
 
-     @if(count($errors) > 0)
-            <div class="alert alert-danger" >
-
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>
-                            {{$error}}
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-     @endif
 @endsection

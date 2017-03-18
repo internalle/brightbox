@@ -28,12 +28,16 @@
                      <td>{{$product->name}}</td>
                      <td>{{$product->stock}}</td>
                      <td>
-                     @if($product->images)
+                     @if(count($product->images))
                          @foreach($product->images as $image)
                                <a href="{{$product->name ?  asset('storage/' . $image->name) : "#"}}" /><img height="70" src="{{$image->name ?  asset('storage/' . $image->name) : ""}}"></a>
 
                          @endforeach
+
+                     @else
+                          <img width="50" src="https://cdn4.iconfinder.com/data/icons/box-and-crates-icons/100/16-512.png" />
                      @endif
+
                      </td>
                      @can('ManagerOrAdmin')
                      <td><a class="btn btn-warning" href="{{route("products.edit",$product->id)}}">Edit</a></td>

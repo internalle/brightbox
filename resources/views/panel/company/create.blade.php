@@ -5,18 +5,7 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                @if(count($errors) > 0)
-                    <div class="alert alert-danger" >
-
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>
-                                    {{$error}}
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                @include('panel.partials.errors')
                 <div class="panel panel-default">
                     <a class="btn btn-danger" style="margin: 15px;" href="{{route('company.choose')}}">Go back</a>
                     <div class="panel-heading"><h1>Create Company Profile</h1></div>

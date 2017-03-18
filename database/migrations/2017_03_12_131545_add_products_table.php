@@ -16,10 +16,13 @@ class AddProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('details');
+            $table->longText('details');
             $table->integer('stock')->nullable()->default(0)->unsigned();
-            $table->integer('company_id')->references("id")->on("company")->onDelete('cascade');
+            $table->integer('company_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign("company_id")->references("id")->on("products")->onDelete('cascade');
+
         });
     }
 

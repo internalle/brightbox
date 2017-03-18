@@ -43,7 +43,7 @@
             </div>
 
             {!! Form::close() !!}
-
+            <a href="{{ URL::previous() }}" class="btn btn-default">Back</a>
         </div>
 
 
@@ -53,19 +53,6 @@
     <img height="150"
          src="{{$model->avatar ?  asset('storage/' . $model->avatar) : "https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png"}}">
 
-    <div class="row">
-        @if(count($errors) > 0)
-            <div class="alert alert-danger col-xs-10 pull-right">
-
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>
-                            {{$error}}
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-    </div>
+    @include('panel.partials.errors')
 
 @endsection
